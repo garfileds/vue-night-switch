@@ -1,0 +1,30 @@
+{
+  "name": "vue-night",
+  "version": "1.0.0",
+  "description": "a vue element/plugin for turning on/off light",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garfileds/vue-night.git"
+  },
+  "keywords": [
+    "vue",
+    "light"
+  ],
+  "author": "adoug",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "fis-parser-babel-5.x": "^1.4.0",
+    "fis3-hook-commonjs": "^0.1.26",
+    "fis3-hook-node_modules": "^2.2.8",
+    "fis3-postpackager-loader": "^2.1.4"
+  },
+  "dependencies": {
+    "fastclick": "^1.0.6"
+  }
+}

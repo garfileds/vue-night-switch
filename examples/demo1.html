@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vue-night demo</title>
+
+    <style type="text/css">
+        .button {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <button id="btnSwitchNight" class="button" v-night>点我变身！</button>
+    </div>
+
+    <script src="mod.js"></script>
+    <script src="../vue.js"></script>
+    <script src="demo1.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+
+            data: {
+                isShow: false
+            },
+
+            methods: {
+                changeShow: function () {
+                    this.isShow = !this.isShow;
+                },
+
+                say: function (words) {
+                    alert(words);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
