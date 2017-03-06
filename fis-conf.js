@@ -2,45 +2,92 @@
  * Created by adoug on 2017/3/3.
  */
 
+var parserVuePlugin = require('fis3-parser-vue-component');
 /****************环境变量*****************/
 fis
-// 排除指定目录
     .set('project.files', ['**', '.**', '.**/**'])
-    .set('project.ignore', ['dist/**', 'dev/**', 'node_modules/**', '.gitignore', '.git/**', '.idea/**', 'fis-conf.js'])
-    .set('project.fileType.text', 'es');
+    .set('project.ignore', ['dev/**', 'node_modules/**', '.gitignore', '.git/**', '.idea/**', 'fis-conf.js'])
+    .set('project.fileType.text', 'map,vue');
 
 
-/****************单文件处理插件*****************/
-//node_module require支持
+// 模块化支持插件
+// https://github.com/fex-team/fis3-hook-commonjs (forwardDeclaration: true)
 fis.hook('commonjs', {
-    extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
+    extList: [
+        '.js', '.coffee', '.es6', '.jsx', '.vue',
+    ],
+    umd2commonjs: true,
+    ignoreDependencies: [
+
+    ]
 });
 
+// 禁用components，启用node_modules
 fis.unhook('components');
 fis.hook('node_modules');
+
 fis.match('node_modules/**.js', {
     isMod: true
 });
 
-fis.match('{/src/**.js, /examples/**.js}', {
-    parser: fis.plugin('babel-5.x', {
-        blacklist: ['regenerator'],
-        stage: 3
-    }),
-    rExt: 'js'
-});
-
-fis.match('/src/**.js', {
-    isMod: true
-});
-
-fis.match('::package', {
-    postpackager: fis.plugin('loader', {})
-});
-
-// 设置 *.scss 配置配置项
-/*fis.match('/static/scss/!**.scss', {
+// 所有js文件
+fis.match('{src/**.js}', {
     isMod: true,
-    rExt: '.css',
-    parser: fis.plugin('node-sass')
-});*/
+    rExt: 'js',
+    useSameNameRequire: true
+});
+
+// 编译vue组件
+fis.match('src/**.vue', {
+    isMod: true,
+    rExt: 'js',
+    useSameNameRequire: true,
+    parser: [
+        function(content, file, conf) {
+            conf.runtimeOnly = true;
+            return parserVuePlugin(content, file, conf);
+        },
+    ]
+});
+
+fis.match('src/**.vue:js', {
+    isMod: true,
+    rExt: 'js',
+    useSameNameRequire: true,
+    parser: [
+        fis.plugin('babel-6.x', {
+            presets: ['es2015-loose', 'stage-3']
+        })
+    ]
+});
+
+// 模块文件
+fis.match('/src/**.js', {
+    isMod: true,
+    parser: [
+        fis.plugin('babel-6.x', {
+            presets: ['es2015-loose', 'stage-3']
+        })
+    ]
+});
+
+// 页面直接引入的文件，不进行模块require包装
+fis.match('/examples/**.js', {
+    parser: [
+        fis.plugin('babel-6.x', {
+            presets: ['es2015-loose', 'stage-3']
+        })
+    ],
+    isMod: false
+});
+
+// 非模块文件
+fis.match('/examples/mod.js', {
+    parser: null,
+    isMod: false
+});
+
+// 打包
+fis.match('::package', {
+    postpackager: fis.plugin('loader'),
+});

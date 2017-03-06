@@ -2,10 +2,13 @@
  * Created by adoug on 2017/3/3.
  */
 
-let cssText = ['/* night */',
+let cssText = ['body {',
+    '        position: relative',
+    '        }',
+    '        /* night */',
     '        .vn-night-body {',
     '            color: #d3d3d3;',
-    '            background: #2b3131;',
+    '            background: #2b3131!important;',
     '        }',
     '        /*night-background*/',
     '        .vn-night-show .vn-night{',

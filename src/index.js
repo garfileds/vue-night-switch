@@ -2,16 +2,25 @@
  * Created by adoug on 2017/3/1.
  */
 
-import Night from './directive';
+import NightDirective from './directive';
+import Night from './night';
 
-const install = function(Vue) {
-    Vue.directive('Night', Night);
+const installDirective = function(Vue) {
+    Vue.directive('Night', NightDirective);
+};
+
+const installComponent = function (Vue) {
+    Vue.directive('Night', NightDirective);
+    Vue.component('night-switch', Night);
 };
 
 if (window.Vue) {
     window.night = Night;
-    Vue.use(install); // eslint-disable-line
+    Vue.use(installComponent); // eslint-disable-line
 }
 
-Night.install = install;
+NightDirective.install = installDirective;
+Night.install = installComponent;
+
+export {NightDirective};
 export default Night;
