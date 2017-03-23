@@ -2,11 +2,10 @@
  * Created by adoug on 2017/3/3.
  */
 
-var parserVuePlugin = require('fis3-parser-vue-component');
 /****************环境变量*****************/
 fis
-    .set('project.files', ['**', '.**', '.**/**'])
-    .set('project.ignore', ['dev/**', 'node_modules/**', '.gitignore', '.git/**', '.idea/**', 'fis-conf.js'])
+    .set('project.files', ['src/**', 'examples/**'])
+    .set('project.ignore', ['test/**', 'dev/**', 'node_modules/**', '.gitignore', '.git/**', '.idea/**', 'fis-conf.js'])
     .set('project.fileType.text', 'map,vue');
 
 
@@ -16,6 +15,9 @@ fis.hook('commonjs', {
     extList: [
         '.js', '.coffee', '.es6', '.jsx', '.vue',
     ],
+    paths: {
+      vue: '/node_modules/vue/dist/vue.common.js'
+    },
     umd2commonjs: true,
     ignoreDependencies: [
 
@@ -31,34 +33,30 @@ fis.match('node_modules/**.js', {
 });
 
 // 所有js文件
-fis.match('{src/**.js}', {
+fis.match('{**.js}', {
     isMod: true,
-    rExt: 'js',
-    useSameNameRequire: true
+    rExt: 'js'
 });
 
 // 编译vue组件
-fis.match('src/**.vue', {
+fis.match('/src/**.vue', {
     isMod: true,
     rExt: 'js',
-    useSameNameRequire: true,
     parser: [
-        function(content, file, conf) {
-            conf.runtimeOnly = true;
-            return parserVuePlugin(content, file, conf);
-        },
+        fis.plugin('vue-component', {
+          runtimeOnly: true
+        })
     ]
 });
 
-fis.match('src/**.vue:js', {
+fis.match('/src/**.vue:js', {
     isMod: true,
     rExt: 'js',
-    useSameNameRequire: true,
     parser: [
-        fis.plugin('babel-6.x', {
-            presets: ['es2015-loose', 'stage-3']
-        })
-    ]
+      fis.plugin('babel-6.x', {
+        presets: ['es2015-loose', 'stage-3']
+      })
+    ],
 });
 
 // 模块文件

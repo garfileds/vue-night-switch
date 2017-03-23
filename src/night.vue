@@ -9,11 +9,7 @@
 <style lang="css">
     @font-face {
         font-family: 'icomoon';
-        src:  url('./fonts/icomoon.eot?axij8m');
-        src:  url('./fonts/icomoon.eot?axij8m#iefix') format('embedded-opentype'),
-        url('./fonts/icomoon.ttf?axij8m') format('truetype'),
-        url('./fonts/icomoon.woff?axij8m') format('woff'),
-        url('./fonts/icomoon.svg?axij8m#icomoon') format('svg');
+        src: url('./fonts/icomoon.woff?axij8m') format('woff');
         font-weight: normal;
         font-style: normal;
     }
@@ -72,22 +68,18 @@
 </style>
 
 <script>
-    module.exports = {
-        name: 'night-switch',
+    export default {
+      name: 'night-switch',
 
-        created() {
-             console.log('component night-switch created !');
-        },
-
-        data: function() {
-            return {
-                isNight: false
-            };
-        },
-        methods: {
-            switchNight: function() {
-                this.isNight = !this.isNight;
-            }
+      data: function() {
+        return {
+          isNight: false
         }
+      },
+      methods: {
+        switchNight: function() {
+          this.isNight = !this.isNight
+        }
+      }
     }
 </script>
