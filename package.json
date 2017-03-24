@@ -9,7 +9,8 @@
     "test": "karma start",
     "build:umd": "cross-env NODE_ENV=production webpack --config webpack.umd.conf.js --progress --hide-modules",
     "build:cjs": "cross-env NODE_ENV=production webpack --config webpack.common.conf.js --progress --hide-modules",
-    "build": "npm run build:umd && npm run build:cjs"
+    "build": "npm run build:umd && npm run build:cjs",
+    "dev": "webpack --config webpack.common.conf.js --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -42,13 +43,15 @@
     "fis3-parser-vue-component": "^5.2.0",
     "fis3-postpackager-loader": "^1.5.2",
     "fis3-postprocessor-autoprefixer": "^1.0.0",
+    "imports-loader": "^0.7.1",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
     "karma-mocha-reporter": "^2.2.2",
     "karma-phantomjs-launcher": "^1.0.4",
-    "phantomjs": "^2.1.7",
+    "karma-webpack": "^2.0.3",
+    "phantomjs-prebuilt": "^2.1.14",
     "url-loader": "^0.5.8",
     "vue-loader": "^11.2.0",
     "vue-template-compiler": "^2.2.4",
@@ -57,6 +60,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "fastclick": "^1.0.6"
+    "fastclick": "^1.0.6",
+    "vue": "^2.2.5"
   }
 }

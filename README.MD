@@ -1,12 +1,20 @@
-# vue-night-switch
+# vue-night-switch [![Build Status](https://travis-ci.org/garfileds/vue-night-switch.svg?branch=master)](https://travis-ci.org/garfileds/vue-night-switch) [![npm package](https://img.shields.io/npm/v/vue-night-switch.svg)](https://www.npmjs.com/package/vue-night-switch)
 
 vue-night-switch has the power to switch night/daytime. You can use it
 as vue-directive or vue-component.
- 
+
+# Demo
+
+Scan the qr-code using your phone
+
+![image](https://raw.githubusercontent.com/garfileds/vue-night-switch/master/examples/images/demo-qr.png)
+
+Or visit `http://adoug.club:3000/vueNightSwitch` in your phone
+
 # Install
 
 ```bash
- npm install vue-night-switch --save-dev`
+ npm install vue-night-switch --save
 ```
 
 # Usage: as an directive
@@ -34,7 +42,7 @@ new Vue({
 
 ### ES6
 
-You can also use ES6 module with build tools support babel
+ES6 module is also supported with build tools support babel
 ```JavaScript
 import {NightDirective} from 'vue-night-switch'
 ```
@@ -62,18 +70,13 @@ Vue.use(NightSwitch)
 
 # Usage: Directly use
 
-You can use `<script>` directly. The file places in `dist/vue-night-switch.js`
+Include vue-night-switch.js in your JavaScript bundle or add it to your HTML page like this:
 ```html
 <script src="/path/to/vue.js"></script>
 <script src="/path/to/vue-night-switch.js"></script>
 ```
+The file places in `dist/vue-night-switch.js`
 
-# Demo
-
-Scan it using your phone
-![image](https://github.com/garfileds/vue-night-switch/tree/master/examples/images/demo-qr.png)
-
-Or visit `http://45.78.23.100/vueNightSwitch` in your phone
 
 # Other
 

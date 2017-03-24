@@ -54,7 +54,7 @@ let doBind = function () {
   directive.isNight = false
 
     // fix click 300ms delay on touch device
-  attachFastClick.attach(nightTarget)
+  attachFastClick(nightTarget)
 
   tool.insertStyle(config.cssText)
 

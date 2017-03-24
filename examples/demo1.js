@@ -3,8 +3,7 @@
  */
 
 import Vue from 'vue'
-// import Night from '../src/index'
-import Night from 'vue-night'
+import Night from '../src/index'
 Vue.use(Night)
 
 var app = new Vue({

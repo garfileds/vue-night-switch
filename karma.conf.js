@@ -1,9 +1,6 @@
 // Karma configuration
 // Generated on Sat Mar 18 2017 22:33:50 GMT+0800 (中国标准时间)
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-
 module.exports = function(config) {
   config.set({
 
@@ -44,10 +41,6 @@ module.exports = function(config) {
             loader: 'vue-loader',
             options: {
               loaders: {
-                css: ExtractTextPlugin.extract({
-                  use: 'css-loader',
-                  fallback: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
-                })
               }
             }
           },
@@ -69,13 +62,13 @@ module.exports = function(config) {
           {
             test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
             loader: 'url-loader?importLoaders=1&limit=3000&name=/fonts/[name].[ext]'
+          },
+          {
+            test: /\.js$/,
+            loader: 'imports-loader?define=>false'
           }
         ]
       },
-
-      plugins: [
-        new ExtractTextPlugin('vue-night-switch.css')
-      ],
 
       resolve: {
         alias: {

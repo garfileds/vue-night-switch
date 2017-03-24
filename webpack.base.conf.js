@@ -31,8 +31,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          presets: ['env']
-        }
+          presets: ['env']        }
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -44,6 +43,10 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         loader: 'url-loader?importLoaders=1&limit=3000&name=/fonts/[name].[ext]'
+      },
+      {
+        test: /\.js$/,
+        loader: 'imports-loader?define=>false'
       }
     ]
   },
