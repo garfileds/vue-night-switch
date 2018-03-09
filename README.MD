@@ -9,7 +9,7 @@ Scan the qr-code using your phone
 
 ![image](https://raw.githubusercontent.com/garfileds/vue-night-switch/master/examples/images/demo-qr.png)
 
-Or visit `http://45.78.23.100:3020/vueNightSwitch` in your phone
+Or visit `http://adoug.info/demo/vueNightSwitch` in your phone
 
 # Install
 
